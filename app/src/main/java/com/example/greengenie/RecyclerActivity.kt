@@ -1,8 +1,8 @@
 package com.example.greengenie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.LiveFolders.INTENT
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class RecyclerActivity : AppCompatActivity() {
+class RecyclerActivity : AppCompatActivity(), itemadapter.OnItemClickListener{
 
     private val itemlist : MutableList<locations> = mutableListOf()
 
@@ -42,10 +42,11 @@ class RecyclerActivity : AppCompatActivity() {
                         }
                         //Log.d("println",user.id.toString())
                     }
-                    Log.d("List of Waste","${itemlist}")
-                    itemadapter = itemadapter(this@RecyclerActivity,itemlist)
+                    itemadapter = itemadapter(this@RecyclerActivity,itemlist,this@RecyclerActivity)
                     recycler.layoutManager = LinearLayoutManager(this@RecyclerActivity)
                     recycler.adapter = itemadapter
+
+
                 }
             }
 
@@ -55,5 +56,11 @@ class RecyclerActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    override fun onItemClick(pos: String) {
+       val intent = Intent(applicationContext,FeedBack_Activity::class.java)
+        intent.putExtra("address",pos)
+        startActivity(intent)
     }
 }

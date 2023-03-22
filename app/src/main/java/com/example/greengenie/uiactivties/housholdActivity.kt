@@ -58,17 +58,17 @@ class housholdActivity : AppCompatActivity() {
         }
         recyablebtn.setOnClickListener {
             val intent = Intent(applicationContext,RecyclerActivity::class.java);
-            intent.putExtra("1","Recycable")
+            intent.putExtra("1","Recyclable Waste")
             startActivity(intent)
         }
         toxicbtn.setOnClickListener {
             val intent = Intent(applicationContext,RecyclerActivity::class.java);
-            intent.putExtra("1","Toxic")
+            intent.putExtra("1","Toxic Waste")
             startActivity(intent)
         }
         electronicbtn.setOnClickListener {
             val intent = Intent(applicationContext,RecyclerActivity::class.java);
-            intent.putExtra("1","Electronic")
+            intent.putExtra("1","Electronic Waste")
             startActivity(intent)
         }
     }

@@ -8,10 +8,12 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.FirebaseDatabase
 
-class add_edit_locations : AppCompatActivity() {
+class add_edit_locations : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     lateinit var addlocation :Button
     lateinit var editlocation : Button
+    lateinit var res : String
+    lateinit var arrayAdapter: ArrayAdapter<CharSequence>
 
     private var realtimedatabase = FirebaseDatabase.getInstance()
     private var rdbreferance = realtimedatabase.reference.child("Waste_Dispose_Locations");
@@ -19,6 +21,7 @@ class add_edit_locations : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_locations)
         addlocation = findViewById(R.id.addlocation)
+        createarrayAdpt()
         addlocation.setOnClickListener {
             createDialog()
         }
@@ -35,14 +38,19 @@ class add_edit_locations : AppCompatActivity() {
         val addressed1 :EditText = dialogview.findViewById(R.id.addressEt)
         val streetedt : EditText = dialogview.findViewById(R.id.streetEt)
         val localityedt : EditText = dialogview.findViewById(R.id.LocalityEt)
-        val catogeryedt : EditText = dialogview.findViewById(R.id.catogeryEt)
+        val catogeryedt : Spinner = dialogview.findViewById(R.id.catogery)
+
+        catogeryedt.onItemSelectedListener = this
+
+        catogeryedt.adapter = arrayAdapter
+
         val addbtn :Button = dialogview.findViewById(R.id.ADDbutton)
         addbtn.setOnClickListener {
             alertdialog.dismiss()
-            val id = rdbreferance.push().key.toString()
+            val id = addressed1.text.toString()
             val location = locations(
-                catogeryedt.text.toString(),addressed1.text.toString(),
-                streetedt.text.toString(),localityedt.text.toString())
+                res,addressed1.text.toString(),
+                streetedt.text.toString(),localityedt.text.toString(),"0%")
             rdbreferance.child(id).setValue(location).addOnCompleteListener {
 
                 if(it.isSuccessful){
@@ -55,11 +63,23 @@ class add_edit_locations : AppCompatActivity() {
             }
 
         }
+    }
 
+    private fun createarrayAdpt() {
+        arrayAdapter = ArrayAdapter.createFromResource(this,
+            R.array.waste_category,
+            android.R.layout.simple_spinner_item
+        )
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    }
 
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        if(p0!=null){
+            res = p0.getItemAtPosition(p2).toString()
+        }
+    }
 
-
-
+    override fun onNothingSelected(p0: AdapterView<*>?) {
 
     }
 }

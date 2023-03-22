@@ -48,13 +48,18 @@
 
             android:text="Catogery"
             android:layout_marginBottom="8dp"/>
-
-        <Button
-            android:id="@+id/feedbackbtn"
+        <TextView
+            android:id="@+id/text5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Feed Back"
-            />
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+
+            android:text="Fill percent"
+            android:layout_marginBottom="8dp"/>
+
+
+
 
 
 

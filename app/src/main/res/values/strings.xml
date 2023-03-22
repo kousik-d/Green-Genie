@@ -7,18 +7,24 @@
         <item>Toxic Waste</item>
     </string-array>
 
-    <string name="report_prompt">Report an issue</string>
-    <array name="report_options">
-        <item>10%</item>
-        <item>20%</item>
-        <item>30%</item>
-        <item>40%</item>
-        <item>50%</item>
-        <item>60%</item>
-        <item>70%</item>
-        <item>80%</item>
-        <item>90%</item>
-    </array>
+    <string-array name="report_options">
+        <item>0%</item>
+        <item>10%-20%</item>
+        <item>20%-30%</item>
+        <item>30%-40%</item>
+        <item>40%-50%</item>
+        <item>50%-60%</item>
+        <item>60%-70%</item>
+        <item>70%-100%</item>
+    </string-array>
+
+    <string-array name="waste_category">
+        <item>Organic</item>
+        <item>Recyclable Waste</item>
+        <item>Toxic Waste</item>
+        <item>Electronic Waste</item>
+
+    </string-array>
 
 
 </resources>

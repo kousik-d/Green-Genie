@@ -6,17 +6,17 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/addressLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="350dp"
+        android:layout_width="385dp"
+        android:layout_height="73dp"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/addressEt"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="30dp"
             android:drawablePadding="4dp"
             android:hint="Address"
             android:inputType="text" />
@@ -26,17 +26,17 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/streetLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="350dp"
-        android:layout_height="64dp"
+        android:layout_width="385dp"
+        android:layout_height="73dp"
         android:layout_below="@id/addressLayout"
         android:layout_marginHorizontal="16dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/streetEt"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             android:drawablePadding="4dp"
             android:hint="Street"
             android:inputType="text" />
@@ -45,17 +45,17 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/LocalityLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="350dp"
+        android:layout_width="385dp"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
+        android:layout_height="73dp"
         android:layout_below="@id/streetLayout"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="15dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/LocalityEt"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             android:drawablePadding="4dp"
             android:hint="Locality"
             android:inputType="text" />
@@ -70,29 +70,19 @@
         android:textColor="@color/whiteish"
         android:text="Add"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/catogeryLayout"
+        android:layout_below="@id/catogery"
         android:layout_marginTop="15dp"
 
         android:textStyle="bold"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/catogeryLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="350dp"
+    <Spinner
+        android:id="@+id/catogery"
+        android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_below="@id/LocalityLayout"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="15dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/catogeryEt"
-            android:layout_width="345dp"
-            android:layout_height="wrap_content"
-            android:drawablePadding="4dp"
-            android:hint="Catogery"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:entries="@array/waste_category"
+        android:layout_height="48dp" />
 
 
 </RelativeLayout>
