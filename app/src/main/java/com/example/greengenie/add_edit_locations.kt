@@ -1,5 +1,6 @@
 package com.example.greengenie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +12,7 @@ import com.google.firebase.database.FirebaseDatabase
 class add_edit_locations : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     lateinit var addlocation :Button
-    lateinit var editlocation : Button
+
     lateinit var res : String
     lateinit var arrayAdapter: ArrayAdapter<CharSequence>
 
@@ -20,8 +21,15 @@ class add_edit_locations : AppCompatActivity() ,AdapterView.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_locations)
-        addlocation = findViewById(R.id.addlocation)
         createarrayAdpt()
+        addlocation = findViewById(R.id.addlocation)
+        val editloc = findViewById<Button>(R.id.editlocation)
+        editloc.setOnClickListener {
+            val intent= Intent(applicationContext,RecyclerActivity::class.java)
+            intent.putExtra("1","None")
+            startActivity(intent)
+        }
+
         addlocation.setOnClickListener {
             createDialog()
         }
@@ -47,21 +55,23 @@ class add_edit_locations : AppCompatActivity() ,AdapterView.OnItemSelectedListen
         val addbtn :Button = dialogview.findViewById(R.id.ADDbutton)
         addbtn.setOnClickListener {
             alertdialog.dismiss()
-            val id = addressed1.text.toString()
-            val location = locations(
-                res,addressed1.text.toString(),
-                streetedt.text.toString(),localityedt.text.toString(),"0%")
-            rdbreferance.child(id).setValue(location).addOnCompleteListener {
+            if(addressed1.text.isNotEmpty() && streetedt.text.isNotEmpty() && localityedt.text.isNotEmpty()) {
+                val id = addressed1.text.toString()
+                val location = locations(
+                    res, addressed1.text.toString(),
+                    streetedt.text.toString(), localityedt.text.toString(), "0%"
+                )
+                rdbreferance.child(id).setValue(location).addOnCompleteListener {
 
-                if(it.isSuccessful){
-                    Toast.makeText(applicationContext,"Added",Toast.LENGTH_SHORT).show()
-                }else{
+                    if (it.isSuccessful) {
+                        Toast.makeText(applicationContext, "Added", Toast.LENGTH_SHORT).show()
+                    } else {
 
+
+                    }
 
                 }
-
             }
-
         }
     }
 

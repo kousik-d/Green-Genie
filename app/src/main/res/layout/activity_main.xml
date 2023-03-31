@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
+
     <TextView
         android:id="@+id/Notifications"
         android:layout_width="341dp"
@@ -29,7 +32,17 @@
         android:textSize="35dp"
         android:textStyle="bold" />
 
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Discount"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="359dp"
+        android:layout_marginEnd="34dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/exit_app" />
 
 
 </RelativeLayout>

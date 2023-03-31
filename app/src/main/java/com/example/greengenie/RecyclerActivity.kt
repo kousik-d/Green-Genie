@@ -26,10 +26,40 @@ class RecyclerActivity : AppCompatActivity(), itemadapter.OnItemClickListener{
         setContentView(R.layout.activity_recycler)
         recycler = findViewById(R.id.recyclerv)
         var search = intent.getStringExtra("1").toString()
-        Log.d("HOUSEHOLD","{$search}")
-
-        createData(search)
+        if(search=="None"){
+            showingarbage();
+        }else {
+            createData(search)
+        }
     }
+
+    private fun showingarbage() {
+        realdbfirebase.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                itemlist.clear()
+                for(eachuser in snapshot.children){
+                    val user = eachuser.getValue(locations::class.java)
+                    if(user!=null){
+                        if(user.catogery=="Organic" || user.catogery=="Recyclable Waste" || user.catogery=="Toxic Waste" || user.catogery=="Electronic Waste") {
+                            itemlist.add(user)
+                        }
+                        //Log.d("println",user.id.toString())
+                    }
+                    itemadapter = itemadapter(this@RecyclerActivity,itemlist,this@RecyclerActivity)
+                    recycler.layoutManager = LinearLayoutManager(this@RecyclerActivity)
+                    recycler.adapter = itemadapter
+
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+    }
+
     fun createData(search : String){
         realdbfirebase.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

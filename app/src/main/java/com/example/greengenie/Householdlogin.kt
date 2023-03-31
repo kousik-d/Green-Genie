@@ -47,4 +47,11 @@ class Householdlogin : AppCompatActivity() {
         }
 
     }
+    override fun onStart() {
+        super.onStart()
+        if(firebaseAuth.currentUser!=null){
+            val intent = Intent(applicationContext,housholdActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }
